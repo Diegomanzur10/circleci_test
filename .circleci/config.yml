@@ -7,6 +7,8 @@ jobs:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
+      - run: echo 'export PYTHONPATH="${PYTHONPATH}:${HOME}/prePassItOn/"' >> $BASH_ENV
+      - run: python -c "import sys; print(sys.path)"
       - run: python3 code/main.py
   test:
     working_directory: ~/circleci-python
@@ -14,6 +16,8 @@ jobs:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
+      - run: echo 'export PYTHONPATH="${PYTHONPATH}:${HOME}/prePassItOn/"' >> $BASH_ENV
+      - run: python -c "import sys; print(sys.path)"
       - run: python3 test/main-test.py
 
 workflows:
